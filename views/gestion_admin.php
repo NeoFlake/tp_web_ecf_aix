@@ -140,7 +140,7 @@ $authorlist = get_all_authors();
                                         <?php if (intval($author["nombre_livre"]) > 0) { ?>
                                             <p>Non supprimable</p>
                                         <?php } else { ?>
-                                            <a href="<?php echo "../src/controllers/book_controller.php?id=" . $author['id'] ?>">
+                                            <a href="<?php echo "../src/controllers/author_controller.php?id=" . $author['id'] ?>">
                                                 supprimer
                                             </a>
                                         <?php } ?>

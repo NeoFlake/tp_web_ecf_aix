@@ -26,3 +26,15 @@ function get_all_authors()
 
     return $result;
 }
+
+function delete_author($id){
+    $result = "Échec dans la suppression de l'auteur : ";
+
+    try {
+        $result = delete_author_by_id($id);
+    } catch (PDOException $pdo_error) {
+        $result .= "Erreur fatale, veuillez réessayer";
+    }
+
+    return $result;
+}

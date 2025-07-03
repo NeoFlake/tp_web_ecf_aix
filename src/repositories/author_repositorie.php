@@ -46,3 +46,19 @@ function get_all_authors_and_count()
         throw new PDOException($pdo_error->getMessage());
     }
 }
+
+function delete_author_by_id($id){
+    $pdo = get_connection();
+
+    try {
+
+        $delete = "DELETE FROM author WHERE id = :id";
+
+        $query = $pdo->prepare($delete);
+        $query->bindValue(":id", $id);
+        $query->execute();
+
+    } catch (PDOException $pdo_error) {
+        throw new PDOException($pdo_error->getMessage());
+    }
+}
