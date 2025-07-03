@@ -2,6 +2,8 @@
 
 $book_search = $_SESSION["book_search"] ?? null;
 
+unset($_SESSION["book_search"]);
+
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -17,8 +19,8 @@ $book_search = $_SESSION["book_search"] ?? null;
                     </li>
                 <?php } ?>
             </ul>
-            <form class="d-flex" role="search" action="../../src/controllers/book_controller.php" method="post">
-                <input class="form-control me-2" type="search" placeholder="cherchez votre livre..." aria-label="Search" name="book_search" value="<?php echo isset($book_search) ?? null ?>">
+            <form class="d-flex" role="search" action="../src/controllers/book_controller.php" method="post">
+                <input class="form-control me-2" type="search" placeholder="cherchez votre livre..." aria-label="Search" name="book_search" value="<?php echo isset($book_search) ? $book_search : null ?>">
                 <button class="btn btn-outline-success" type="submit" name="book_search_validation" value="validated" >Rechercher</button>
             </form>
         </div>
