@@ -29,3 +29,21 @@ CREATE TABLE book (
 ); 
 
 SELECT * FROM book;
+
+INSERT INTO book (title,
+    category,
+    publishing_year,
+    resume,
+    id_author,
+    id_admin)
+
+    VALUES (
+        "Notre Dame de Paris",
+        "Historique",
+        1835,
+        "Un livre extraordinaire qui a donné naissance à une comédie musicale affreuse",
+        5,
+        2
+    );
+
+SELECT * FROM book;

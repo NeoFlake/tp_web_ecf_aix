@@ -19,19 +19,6 @@ $booklist = $_SESSION["booklist"] ?? null;
 <body>
     <div class="container">
         <?php include __DIR__ . "/partials/_navbar.php" ?>
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-                <?php if (isset($booklist)) { ?>
-                    <h1>Les dix livres les plus récents correspondant à votre recherche</h1>
-                <?php } ?>
-            </div>
-        </div>
-        <div class="row">
-            <?php if (is_string($booklist)) { ?>
-                <p><?php echo $booklist ?></p>
-            <?php } else { ?>
-            <?php } ?>
-        </div>
     </div>
     <script src="../utils/bootstrap.bundle.min.js"></script>
 </body>
