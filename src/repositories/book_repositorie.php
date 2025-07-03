@@ -31,3 +31,30 @@ function get_all_books_by_text_or_author($book_search)
         throw new PDOException($pdo_exception->getMessage());
     }
 }
+
+function get_all_by_admin_id($id_admin)
+{
+
+    $pdo = get_connection();
+
+    try {
+
+        $select = "SELECT b.title AS title, 
+        b.category AS category, 
+        b.publishing_year AS publishing_year, 
+        auth.complete_name AS author_name 
+        FROM book AS b
+        JOIN author AS auth ON b.id_author = auth.id
+        WHERE b.id_admin = :id_admin
+        ORDER BY publishing_year DESC";
+
+        $query = $pdo->prepare($select);
+        $query->bindValue(":id_admin", $id_admin);
+        $query->execute();
+
+        return $query->fetchAll();
+
+    } catch (PDOException $pdo_error) {
+        throw new PDOException($pdo_error->getMessage());
+    }
+}

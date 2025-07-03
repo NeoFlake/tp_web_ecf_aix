@@ -47,3 +47,13 @@ INSERT INTO book (title,
     );
 
 SELECT * FROM admin;
+
+SELECT b.title AS title, 
+        b.category AS category, 
+        b.publishing_year AS publishing_year, 
+        auth.complete_name AS author_name ,
+        b.id_author
+        FROM book AS b
+        JOIN author AS auth ON b.id_author = auth.id
+        WHERE b.id_author = 1
+        ORDER BY publishing_year DESC;

@@ -10,7 +10,7 @@ unset($_SESSION["main_page_displayed"], $_SESSION["email"], $_SESSION["fail_conn
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
