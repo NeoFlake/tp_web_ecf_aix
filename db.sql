@@ -46,4 +46,4 @@ INSERT INTO book (title,
         2
     );
 
-SELECT * FROM book;
+SELECT * FROM admin;

@@ -3,8 +3,9 @@
 session_start();
 
 $email = $_SESSION["email"] ?? null;
+$fail_connexion = $_SESSION["fail_connexion"] ?? null;
 
-unset($_SESSION["main_page_displayed"])
+unset($_SESSION["main_page_displayed"], $_SESSION["email"], $_SESSION["fail_connexion"]);
 
 ?>
 
@@ -25,7 +26,7 @@ unset($_SESSION["main_page_displayed"])
             <h1>Connexion</h1>
         </div>
         <div class="d-flex justify-content-center mt-5">
-            <form action="../../src/controllers/user/user_controller.php" method="post">
+            <form action="../src/controllers/connection_controller.php" method="post">
                 <div class="row">
                     <div class="col-12">
                         <label for="email" class="col-form-label">Email </label>
@@ -44,6 +45,13 @@ unset($_SESSION["main_page_displayed"])
             </form>
         </div>
     </div>
+    <?php if($fail_connexion) { ?>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="d-flex justify-content-center mt-5">
+            <span> <?php echo $fail_connexion ?></span>
+        </div>
+    </div>
+    <?php } ?>
     <script src="../utils/bootstrap.bundle.min.js"></script>
 </body>
 

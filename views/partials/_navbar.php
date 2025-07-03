@@ -20,6 +20,11 @@ unset($_SESSION["book_search"]);
                     <li class="nav-item">
                         <a class="nav-link" href="../views/gestion_admin.php">Gestion Administrative</a>
                     </li>
+                    <li class="nav-item">
+                        <form action="../src/controllers/connection_controller.php" method="post">
+                            <button type="submit" class="btn btn-outline-primary btn-sm mt-1" name="deconnection" value="true" >Déconnexion</button>
+                        </form>
+                    </li>
                 <?php } ?>
             </ul>
             <?php if (isset($_SESSION["main_page_displayed"])) { ?>
