@@ -46,7 +46,7 @@ INSERT INTO book (title,
         2
     );
 
-SELECT * FROM admin;
+SELECT * FROM author;
 
 SELECT b.title AS title, 
         b.category AS category, 
@@ -57,3 +57,14 @@ SELECT b.title AS title,
         JOIN author AS auth ON b.id_author = auth.id
         WHERE b.id_author = 1
         ORDER BY publishing_year DESC;
+
+SELECT auth.complete_name AS author_name, 
+        auth.nationality AS nationality,
+        COUNT(b.title) AS nombre_libre FROM author AS auth
+        JOIN book AS b ON b.id_author = auth.id
+        GROUP BY auth.id;
+
+SELECT auth.id AS id,
+        auth.complete_name AS author_name, 
+       auth.nationality AS nationality FROM author AS auth
+        JOIN book AS b ON b.id_author = auth.id;

@@ -2,6 +2,40 @@
 
 include __DIR__ . "/../config/connexion.php";
 
+function insert_new_book($new_book){
+    $pdo = get_connection();
+
+    try {
+        $insert = "INSERT INTO book (
+        title,
+        category,
+        publishing_year,
+        resume,
+        id_author,
+        id_admin
+        ) VALUES (
+        :title,
+        :category,
+        :publishing_year,
+        :resume,
+        :id_author,
+        :id_admin
+        )";
+
+        $query = $pdo->prepare($insert);
+        $query->bindValue(":title", $new_book["title"]);
+        $query->bindValue(":category", $new_book["category"]);
+        $query->bindValue(":publishing_year", $new_book["publishing_year"]);
+        $query->bindValue(":resume", $new_book["resume"]);
+        $query->bindValue(":id_author", $new_book["id_author"]);
+        $query->bindValue(":id_admin", $new_book["id_admin"]);
+        $query->execute();
+        
+    } catch(PDOException $pdo_exception) {
+
+    }
+}
+
 function get_all_books_by_text_or_author($book_search)
 {
     $pdo = get_connection();
@@ -39,7 +73,8 @@ function get_all_by_admin_id($id_admin)
 
     try {
 
-        $select = "SELECT b.title AS title, 
+        $select = "SELECT b.id AS id,
+        b.title AS title, 
         b.category AS category, 
         b.publishing_year AS publishing_year, 
         auth.complete_name AS author_name 
@@ -53,6 +88,22 @@ function get_all_by_admin_id($id_admin)
         $query->execute();
 
         return $query->fetchAll();
+    } catch (PDOException $pdo_error) {
+        throw new PDOException($pdo_error->getMessage());
+    }
+}
+
+function delete_book_by_id($id)
+{
+    $pdo = get_connection();
+
+    try {
+
+        $delete = "DELETE FROM book WHERE id = :id";
+
+        $query = $pdo->prepare($delete);
+        $query->bindValue(":id", $id);
+        $query->execute();
 
     } catch (PDOException $pdo_error) {
         throw new PDOException($pdo_error->getMessage());
