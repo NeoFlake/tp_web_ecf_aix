@@ -13,16 +13,21 @@ unset($_SESSION["book_search"]);
                 <li class="nav-item">
                     <a class="nav-link" href="../views/index.php">Accueil</a>
                 </li>
+                <li>
+                    <a class="nav-link" href="../views/connection.php">Connexion</a>
+                </li>
                 <?php if (isset($_SESSION["admin_logged"])) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="../views/gestion_admin.php">Gestion Administrative</a>
                     </li>
                 <?php } ?>
             </ul>
+            <?php if (isset($_SESSION["main_page_displayed"])) { ?>
             <form class="d-flex" role="search" action="../src/controllers/book_controller.php" method="post">
                 <input class="form-control me-2" type="search" placeholder="cherchez votre livre..." aria-label="Search" name="book_search" value="<?php echo isset($book_search) ? $book_search : null ?>">
                 <button class="btn btn-outline-success" type="submit" name="book_search_validation" value="validated" >Rechercher</button>
             </form>
+            <?php } ?>
         </div>
     </div>
 </nav>

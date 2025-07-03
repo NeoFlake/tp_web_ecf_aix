@@ -3,6 +3,7 @@
 session_start();
 
 $booklist = $_SESSION["booklist"] ?? null;
+$_SESSION["main_page_displayed"] = true;
 
 unset($_SESSION["booklist"]);
 
