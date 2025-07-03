@@ -35,7 +35,7 @@ function get_all_authors_and_count()
         auth.complete_name AS author_name, 
        auth.nationality AS nationality,
        COUNT(b.title) AS nombre_livre FROM author AS auth
-        JOIN book AS b ON b.id_author = auth.id
+        LEFT JOIN book AS b ON b.id_author = auth.id
         GROUP BY auth.complete_name";
 
         $query = $pdo->prepare($select);
