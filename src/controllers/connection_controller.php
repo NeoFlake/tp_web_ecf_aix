@@ -4,6 +4,14 @@ include __DIR__ . "/../services/connection_service.php";
 
 session_start();
 
+if (isset($_POST["deconnection"]) and $_POST["deconnection"] == true) {
+
+    unset($_SESSION["admin_logged"]);
+
+    header("location: ../../views/index.php");
+    die();
+}
+
 if (str_contains($_SERVER["HTTP_REFERER"], "connection.php") and $_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_SESSION["email"] = htmlentities($_POST["email"]);
@@ -22,13 +30,5 @@ if (str_contains($_SERVER["HTTP_REFERER"], "connection.php") and $_SERVER["REQUE
         header("location: ../../views/gestion_admin.php");
     }
 
-    die();
-}
-
-if (isset($_POST["deconnection"]) and $_POST["deconnection"] == true) {
-
-    unset($_SESSION["admin_logged"]);
-
-    header("location: ../../views/index.php");
     die();
 }

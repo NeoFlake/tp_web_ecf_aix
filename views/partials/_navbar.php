@@ -14,9 +14,6 @@ unset($_SESSION["book_search"]);
                 <li class="nav-item">
                     <a class="nav-link" href="../views/index.php">Accueil</a>
                 </li>
-                <li>
-                    <a class="nav-link" href="../views/connection.php">Connexion</a>
-                </li>
                 <?php if (isset($_SESSION["admin_logged"])) { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="../views/gestion_admin.php">Gestion Administrative</a>
@@ -29,6 +26,10 @@ unset($_SESSION["book_search"]);
                     <span class="navbar-text ms-3">
                         <?php echo $admin_logged["last_name"] . " " . $admin_logged["first_name"] ?>
                     </span>
+                <?php } else { ?>
+                    <li>
+                        <a class="nav-link" href="../views/connection.php">Connexion</a>
+                    </li>
                 <?php } ?>
             </ul>
             <?php if (isset($_SESSION["main_page_displayed"])) { ?>

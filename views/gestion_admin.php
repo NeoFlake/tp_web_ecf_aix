@@ -38,11 +38,8 @@ unset($_GET["modify_in_progress"], $_GET["id"]);
             </div>
         </div>
         <div class="row">
-            <div class="mt-5 text-decoration-underline">
-                <h4>Gestion Administrative des livres et auteurs</h4>
-            </div>
             <div class="mt-4 text-decoration-underline">
-                <p>Livres</p>
+                <h4>Livres</h4>
             </div>
             <?php if (!is_string($booklist) and count($booklist) > 0) { ?>
                 <div class="row">
@@ -171,8 +168,8 @@ unset($_GET["modify_in_progress"], $_GET["id"]);
                     </div>
                 <?php } ?>
             </div>
-            <div class="mt-4 text-decoration-underline">
-                <p>Auteurs</p>
+            <div class="mt-5 text-decoration-underline">
+                <h4>Auteurs</h4>
             </div>
             <?php if (!is_string($authorlist) and count($authorlist) > 0) { ?>
                 <div class="row">
