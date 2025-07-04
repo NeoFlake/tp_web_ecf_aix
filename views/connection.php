@@ -53,6 +53,7 @@ unset($_SESSION["main_page_displayed"], $_SESSION["email"], $_SESSION["fail_conn
     </div>
     <?php } ?>
     <script src="../utils/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/44e9c18f39.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

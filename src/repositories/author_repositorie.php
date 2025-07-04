@@ -2,7 +2,8 @@
 
 include_once __DIR__ . "/../config/connexion.php";
 
-function insert_new_author($new_author) {
+function insert_new_author($new_author)
+{
     $pdo = get_connection();
 
     try {
@@ -18,9 +19,7 @@ function insert_new_author($new_author) {
         $query->bindValue(":complete_name", $new_author["complete_name"]);
         $query->bindValue(":nationality", $new_author["nationality"]);
         $query->execute();
-        
-    } catch(PDOException $pdo_exception) {
-
+    } catch (PDOException $pdo_exception) {
     }
 }
 
@@ -47,7 +46,32 @@ function get_all_authors_and_count()
     }
 }
 
-function delete_author_by_id($id){
+function update_author_by_id($udpated_author)
+{
+
+    $pdo = get_connection();
+
+    try {
+
+        $update = "UPDATE author
+        SET complete_name = :complete_name,
+        nationality = :nationality
+        WHERE id = :id";
+
+        $query = $pdo->prepare($update);
+        $query->bindValue(":complete_name", $udpated_author["complete_name"]);
+        $query->bindValue(":nationality", $udpated_author["nationality"]);
+        $query->bindValue(":id", $udpated_author["id"]);
+        $query->execute();
+
+        return true;
+    } catch (PDOException $pdo_error) {
+        throw new PDOException($pdo_error->getMessage());
+    }
+}
+
+function delete_author_by_id($id)
+{
     $pdo = get_connection();
 
     try {
@@ -57,7 +81,6 @@ function delete_author_by_id($id){
         $query = $pdo->prepare($delete);
         $query->bindValue(":id", $id);
         $query->execute();
-
     } catch (PDOException $pdo_error) {
         throw new PDOException($pdo_error->getMessage());
     }

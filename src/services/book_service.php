@@ -31,6 +31,18 @@ function get_booklist_by_text_or_author($book_search)
     return $result;
 }
 
+function get_all(){
+    $result = "Échec de la récupération des livres";
+
+    try {
+        $result = get_all_book();
+    } catch (PDOException $pdo_error) {
+        $result .= "Erreur fatale, veuillez réessayer";
+    }
+
+    return $result;
+}
+
 function get_all_books($id)
 {
     $result = null;
@@ -42,6 +54,20 @@ function get_all_books($id)
     }
 
     return $result;
+}
+
+function update_book($udpated_book){
+
+    $result = "Échec lors de la modification du livre : ";
+
+    try {
+        $result = update_book_by_id($udpated_book);
+    } catch (PDOException $pdo_error) {
+        $result .= "Erreur fatale, veuillez réessayer";
+    }
+
+    return $result;
+
 }
 
 function delete_book_by_book_id($id)

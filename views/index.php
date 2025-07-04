@@ -1,9 +1,15 @@
 <?php
 
+include __DIR__ . "../../src/services/book_service.php";
+
 session_start();
 
 $booklist = $_SESSION["booklist"] ?? null;
 $_SESSION["main_page_displayed"] = true;
+
+if (!isset($booklist)) {
+    $booklist = get_all();
+}
 
 unset($_SESSION["booklist"]);
 
@@ -44,6 +50,7 @@ unset($_SESSION["booklist"]);
         <?php } ?>
     </div>
     <script src="../utils/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/44e9c18f39.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

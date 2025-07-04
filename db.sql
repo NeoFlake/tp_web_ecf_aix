@@ -46,7 +46,7 @@ INSERT INTO book (title,
         2
     );
 
-SELECT * FROM author;
+SELECT * FROM book;
 
 SELECT b.title AS title, 
         b.category AS category, 

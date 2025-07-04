@@ -36,6 +36,32 @@ function insert_new_book($new_book){
     }
 }
 
+function get_all_book(){
+
+    $pdo = get_connection();
+
+    try {
+        $select = "SELECT * FROM book AS b
+        JOIN admin AS ad ON b.id_admin = ad.id
+        JOIN author AS auth ON b.id_author = auth.id
+        ORDER BY b.publishing_year DESC
+        LIMIT 10";
+
+        $query = $pdo->prepare($select);
+        $query->execute();
+
+        $result = $query->fetchAll();
+
+        if ($result) {
+            return $result;
+        } else {
+            throw new Exception("Aucun livre n'a été trouvé");
+        }
+    } catch (PDOException $pdo_exception) {
+        throw new PDOException($pdo_exception->getMessage());
+    }
+}
+
 function get_all_books_by_text_or_author($book_search)
 {
     $pdo = get_connection();
@@ -77,6 +103,7 @@ function get_all_by_admin_id($id_admin)
         b.title AS title, 
         b.category AS category, 
         b.publishing_year AS publishing_year, 
+        b.resume AS resume,
         auth.complete_name AS author_name 
         FROM book AS b
         JOIN author AS auth ON b.id_author = auth.id
@@ -88,6 +115,36 @@ function get_all_by_admin_id($id_admin)
         $query->execute();
 
         return $query->fetchAll();
+    } catch (PDOException $pdo_error) {
+        throw new PDOException($pdo_error->getMessage());
+    }
+}
+
+function update_book_by_id($udpated_book){
+
+    $pdo = get_connection();
+
+    try {
+
+        $update = "UPDATE book
+        SET title = :title,
+        category = :category,
+        publishing_year = :publishing_year,
+        resume = :resume,
+        id_author = :id_author
+        WHERE id = :id";
+
+        $query = $pdo->prepare($update);
+        $query->bindValue(":title", $udpated_book["title"]);
+        $query->bindValue(":category", $udpated_book["category"]);
+        $query->bindValue(":publishing_year", $udpated_book["publishing_year"]);
+        $query->bindValue(":resume", $udpated_book["resume"]);
+        $query->bindValue(":id_author", $udpated_book["id_author"]);
+        $query->bindValue(":id", $udpated_book["id"]);
+        $query->execute();
+
+        return true;
+
     } catch (PDOException $pdo_error) {
         throw new PDOException($pdo_error->getMessage());
     }

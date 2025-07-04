@@ -4,6 +4,24 @@ include __DIR__ . "/../services/book_service.php";
 
 session_start();
 
+if(str_contains($_SERVER['HTTP_REFERER'], "gestion_admin.php") and $_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["modification"])){
+
+    $udpated_book = [
+        "id" => htmlentities($_POST["modification"]),
+        "title" => htmlentities($_POST["title"]),
+        "category" => htmlentities($_POST["category"]),
+        "publishing_year" => htmlentities($_POST["publishing_year"]),
+        "resume" => htmlentities($_POST["resume"]),
+        "id_author" => htmlentities($_POST["id_author"])
+    ];
+
+    update_book($udpated_book);
+
+    header("location: ../../views/gestion_admin.php");
+    die();
+
+}
+
 if (str_contains($_SERVER['HTTP_REFERER'], "index.php") and $_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST["book_search_validation"]) and $_POST["book_search_validation"] === "validated") {
     $_SESSION["book_search"] = htmlentities($_POST["book_search"]);
 
@@ -36,5 +54,4 @@ if(str_contains($_SERVER['HTTP_REFERER'], "gestion_admin.php") and $_SERVER['REQ
 
     header("location: ../../views/gestion_admin.php");
     die();
-
 }

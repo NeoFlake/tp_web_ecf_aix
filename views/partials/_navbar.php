@@ -1,7 +1,7 @@
 <?php
 
 $book_search = $_SESSION["book_search"] ?? null;
-$admin_logged = $_SESSION["admin_logged"];
+$admin_logged = $_SESSION["admin_logged"] ?? null;
 
 unset($_SESSION["book_search"]);
 

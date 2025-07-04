@@ -27,7 +27,23 @@ function get_all_authors()
     return $result;
 }
 
-function delete_author($id){
+function update_author($udpated_author)
+{
+
+    $result = "Échec lors de la modification de l'auteur : ";
+
+    try {
+
+        $result = update_author_by_id($udpated_author);
+    } catch (PDOException $pdo_error) {
+        $result .= "Erreur fatale, veuillez réessayer";
+    }
+
+    return $result;
+}
+
+function delete_author($id)
+{
     $result = "Échec dans la suppression de l'auteur : ";
 
     try {
